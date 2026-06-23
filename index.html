@@ -98,8 +98,8 @@
 
         <nav class="main-navigation" id="mainNavigation" aria-label="Navegação principal">
           <a class="active" href="#inicio">Início</a>
-          <a href="#comparar">Comparar</a>
-          <a href="#ofertas">Ofertas</a>
+          <a href="#comparar">Resultados</a>
+          <a href="#comparar">Ofertas</a>
           <a href="#guias">Guias</a>
           <a href="#contato">Contato</a>
         </nav>
@@ -117,8 +117,8 @@
           <span></span>
           Compare antes de comprar
         </div>
-        <h1 id="hero-title">Compare preços e encontre a melhor oferta</h1>
-        <p>Pesquise produtos, veja onde está mais barato e compre pelos links indicados.</p>
+        <h1 id="hero-title">Encontre produtos e ofertas na Amazon</h1>
+        <p>Pesquise o que precisa e acesse produtos reais pelos links indicados.</p>
 
         <form class="search-box" id="searchForm">
           <label class="search-field" for="searchInput">
@@ -130,107 +130,66 @@
               autocomplete="off"
             />
           </label>
-          <button type="submit">Buscar</button>
+          <button id="searchButton" type="submit">
+            <span>Buscar</span>
+          </button>
         </form>
 
         <p class="search-feedback" id="searchFeedback" aria-live="polite"></p>
 
-        <div class="filter-list" aria-label="Filtros de ofertas">
-          <button class="filter-button active" type="button" data-filter="lowest">
+        <div class="filter-list" id="filterList" aria-label="Filtros de resultados">
+          <button class="filter-button active" type="button" data-filter="relevance">
             <svg><use href="#icon-dollar"></use></svg>
-            Menor preço
+            Relevância
           </button>
-          <button class="filter-button" type="button" data-filter="free-shipping">
-            <svg><use href="#icon-truck"></use></svg>
-            Frete grátis
-          </button>
-          <button class="filter-button" type="button" data-filter="coupon">
+          <button class="filter-button" type="button" data-filter="with-price">
             <svg><use href="#icon-ticket"></use></svg>
-            Cupom
+            Com preço
           </button>
-          <button class="filter-button" type="button" data-filter="store">
+          <button class="filter-button" type="button" data-filter="available">
             <svg><use href="#icon-store"></use></svg>
-            Loja
-          </button>
-          <button class="filter-button" type="button" data-filter="rating">
-            <svg><use href="#icon-star"></use></svg>
-            Avaliação
+            Disponíveis
           </button>
         </div>
       </section>
 
       <div class="container content-layout">
         <div class="primary-column">
-          <section class="comparison-card" id="comparar" aria-labelledby="comparison-title">
-            <article class="featured-product">
-              <div class="product-image-wrap">
-                <span class="best-label">Mais buscado</span>
-                <img
-                  src="assets/smartphone.webp"
-                  alt="Smartphone genérico escuro visto de frente e de costas"
-                />
+          <section
+            class="results-panel"
+            id="comparar"
+            aria-labelledby="results-title"
+            aria-busy="false"
+          >
+            <div class="results-heading">
+              <div>
+                <span class="eyebrow" id="resultsEyebrow">Pesquisa de produtos</span>
+                <h2 id="results-title">Resultados da Amazon</h2>
               </div>
-              <div class="featured-product-info">
-                <span class="eyebrow">Destaque da semana</span>
-                <h2 id="comparison-title">Smartphone XPro 128GB</h2>
-                <div class="rating-row" aria-label="Avaliação 4,8 de 5">
-                  <span class="stars">★★★★★</span>
-                  <small>4.8 (1.245 avaliações)</small>
-                </div>
-                <span class="average-label">Preço médio</span>
-                <strong class="average-price">R$ 1.964,00</strong>
-                <span class="value-badge">
-                  <svg><use href="#icon-scale"></use></svg>
-                  Melhor custo-benefício
-                </span>
-              </div>
-            </article>
+              <span class="results-count" id="resultsCount"></span>
+            </div>
 
-            <div class="offers-area">
-              <div class="offers-heading">
-                <div>
-                  <span class="eyebrow">4 lojas encontradas</span>
-                  <h3>Ofertas disponíveis</h3>
-                </div>
-                <span class="updated-at">Atualizado agora</span>
-              </div>
-
-              <div class="table-scroll">
-                <table class="offers-table">
-                  <thead>
-                    <tr>
-                      <th>Loja</th>
-                      <th>Preço</th>
-                      <th>Frete</th>
-                      <th>Prazo</th>
-                      <th>Oferta</th>
-                      <th>Comprar</th>
-                    </tr>
-                  </thead>
-                  <tbody id="offersBody"></tbody>
-                </table>
+            <div class="search-state" id="searchState">
+              <span class="search-state-icon">
+                <svg><use href="#icon-search"></use></svg>
+              </span>
+              <h3>O que você está procurando?</h3>
+              <p>Digite um produto na busca acima para consultar o catálogo da Amazon.</p>
+              <div class="quick-searches" aria-label="Sugestões de busca">
+                <button type="button" data-query="fone bluetooth">Fone bluetooth</button>
+                <button type="button" data-query="notebook">Notebook</button>
+                <button type="button" data-query="smart tv">Smart TV</button>
               </div>
             </div>
+
+            <div class="amazon-products-grid" id="amazonProductsGrid" hidden></div>
           </section>
 
           <p class="affiliate-notice">
             <svg><use href="#icon-info"></use></svg>
-            Alguns links são de afiliados e podem gerar comissão sem custo extra para você.
+            Como Associado Amazon, posso receber comissão por compras qualificadas feitas pelos
+            links deste site, sem custo extra para você.
           </p>
-
-          <section class="more-products" id="ofertas" aria-labelledby="more-products-title">
-            <div class="section-heading">
-              <div>
-                <span class="eyebrow">Escolhas populares</span>
-                <h2 id="more-products-title">Mais produtos comparados</h2>
-              </div>
-              <button class="text-button" type="button">
-                Ver todos
-                <svg><use href="#icon-arrow"></use></svg>
-              </button>
-            </div>
-            <div class="products-grid" id="moreProductsGrid"></div>
-          </section>
         </div>
 
         <aside class="sidebar" aria-label="Informações úteis">
@@ -245,7 +204,7 @@
                 </span>
                 <div>
                   <strong>1. Pesquise o produto</strong>
-                  <p>Use a busca para encontrar o produto que deseja.</p>
+                  <p>Digite qualquer termo para consultar o catálogo da Amazon.</p>
                 </div>
               </li>
               <li>
@@ -253,8 +212,8 @@
                   <svg><use href="#icon-scale"></use></svg>
                 </span>
                 <div>
-                  <strong>2. Compare os preços</strong>
-                  <p>Veja os preços, frete, prazo e ofertas das principais lojas.</p>
+                  <strong>2. Analise os resultados</strong>
+                  <p>Confira nome, imagem, preço e disponibilidade informados pela Amazon.</p>
                 </div>
               </li>
               <li>
@@ -262,8 +221,8 @@
                   <svg><use href="#icon-cart"></use></svg>
                 </span>
                 <div>
-                  <strong>3. Compre pelo link indicado</strong>
-                  <p>Clique em “Ir para oferta” e finalize sua compra na loja.</p>
+                  <strong>3. Acesse a Amazon</strong>
+                  <p>Clique em “Ver na Amazon” para abrir o produto em uma nova aba.</p>
                 </div>
               </li>
             </ol>
@@ -275,19 +234,19 @@
             <ul class="tips-list">
               <li>
                 <span class="tip-icon green"><svg><use href="#icon-coupon"></use></svg></span>
-                Ative cupons de desconto antes de comprar.
+                Confira o preço novamente antes de finalizar.
               </li>
               <li>
                 <span class="tip-icon orange"><svg><use href="#icon-truck"></use></svg></span>
-                Prefira lojas com frete grátis.
+                Verifique frete e prazo diretamente na Amazon.
               </li>
               <li>
                 <span class="tip-icon blue"><svg><use href="#icon-clock"></use></svg></span>
-                Compare o prazo de entrega.
+                Produtos podem mudar de preço ou disponibilidade.
               </li>
               <li>
                 <span class="tip-icon purple"><svg><use href="#icon-star"></use></svg></span>
-                Avalie a reputação da loja e do produto.
+                Leia avaliações e detalhes completos do anúncio.
               </li>
             </ul>
           </section>
@@ -295,8 +254,8 @@
           <section class="trust-card">
             <span class="trust-icon">✓</span>
             <div>
-              <strong>Escolha com confiança</strong>
-              <p>Informações organizadas para facilitar a sua decisão.</p>
+              <strong>Dados atualizados pela API</strong>
+              <p>Produtos e links vêm diretamente do serviço oficial da Amazon.</p>
             </div>
           </section>
         </aside>

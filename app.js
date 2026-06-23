@@ -1,215 +1,28 @@
-// =========================================================
-// DADOS DO SITE
-// Edite estes objetos para atualizar produtos e ofertas.
-// =========================================================
+// URL pública do backend.
+// Em produção, troque pelo endereço HTTPS onde a pasta backend/ foi publicada.
+// Exemplo: "https://api.seudominio.com"
+const API_BASE_URL = window.PRECOCERTO_API_URL || "http://localhost:3000";
 
-const produtoDestaque = {
-  nome: "Smartphone XPro 128GB",
-  precoMedio: 1964,
-  avaliacao: 4.8,
-  imagem: "assets/smartphone.webp",
-};
-
-const ofertas = [
-  {
-    id: 1,
-    loja: "Loja Alfa",
-    sigla: "LA",
-    cor: "#0878ee",
-    preco: 1899,
-    frete: "Grátis",
-    prazo: "2 a 4 dias",
-    oferta: "10% OFF no pix",
-    textoBotao: "Ir para oferta",
-    linkAfiliado: "https://exemplo.com/oferta-1",
-  },
-  {
-    id: 2,
-    loja: "Mega Compra",
-    sigla: "MC",
-    cor: "#17233e",
-    preco: 1949,
-    frete: "Grátis",
-    prazo: "3 a 5 dias",
-    oferta: "Cupom: MEGA10",
-    textoBotao: "Comprar agora",
-    linkAfiliado: "https://exemplo.com/oferta-2",
-  },
-  {
-    id: 3,
-    loja: "OfertaMax",
-    sigla: "OM",
-    cor: "#f04444",
-    preco: 1979,
-    frete: "R$ 19,90",
-    prazo: "4 a 6 dias",
-    oferta: "5% OFF no boleto",
-    textoBotao: "Ir para oferta",
-    linkAfiliado: "https://exemplo.com/oferta-3",
-  },
-  {
-    id: 4,
-    loja: "Compra Rápida",
-    sigla: "CR",
-    cor: "#eda900",
-    preco: 2029,
-    frete: "Grátis",
-    prazo: "2 a 3 dias",
-    oferta: "Frete grátis",
-    textoBotao: "Comprar agora",
-    linkAfiliado: "https://exemplo.com/oferta-4",
-  },
-];
-
-const produtosComparados = [
-  {
-    nome: "Fone Bluetooth Pro",
-    preco: 219.9,
-    avaliacao: 4.6,
-    imagem: "assets/fone-bluetooth.webp",
-  },
-  {
-    nome: "Notebook Ultra 15",
-    preco: 4299,
-    avaliacao: 4.7,
-    imagem: "assets/notebook.webp",
-  },
-  {
-    nome: 'Smart TV 50" 4K',
-    preco: 2199,
-    avaliacao: 4.5,
-    imagem: "assets/smart-tv.webp",
-  },
-];
-
-// =========================================================
-// ELEMENTOS E ESTADO
-// =========================================================
-
-const offersBody = document.querySelector("#offersBody");
-const productsGrid = document.querySelector("#moreProductsGrid");
 const searchForm = document.querySelector("#searchForm");
 const searchInput = document.querySelector("#searchInput");
+const searchButton = document.querySelector("#searchButton");
 const searchFeedback = document.querySelector("#searchFeedback");
+const resultsPanel = document.querySelector("#comparar");
+const resultsEyebrow = document.querySelector("#resultsEyebrow");
+const resultsTitle = document.querySelector("#results-title");
+const resultsCount = document.querySelector("#resultsCount");
+const searchState = document.querySelector("#searchState");
+const productsGrid = document.querySelector("#amazonProductsGrid");
 const filterButtons = document.querySelectorAll(".filter-button");
+const quickSearchButtons = document.querySelectorAll(".quick-searches button");
 const toast = document.querySelector("#toast");
 const mobileMenuButton = document.querySelector("#mobileMenuButton");
 const mainNavigation = document.querySelector("#mainNavigation");
 
-let activeFilter = "lowest";
+let products = [];
+let activeFilter = "relevance";
 let toastTimer;
-
-const currencyFormatter = new Intl.NumberFormat("pt-BR", {
-  style: "currency",
-  currency: "BRL",
-});
-
-// =========================================================
-// RENDERIZAÇÃO
-// =========================================================
-
-function formatCurrency(value) {
-  return currencyFormatter.format(value);
-}
-
-function getFilteredOffers(filter) {
-  const sortedOffers = [...ofertas].sort((a, b) => a.preco - b.preco);
-
-  if (filter === "free-shipping") {
-    return sortedOffers.filter((offer) => offer.frete === "Grátis");
-  }
-
-  if (filter === "coupon") {
-    return sortedOffers.filter((offer) => offer.oferta.toLowerCase().includes("cupom"));
-  }
-
-  // "Loja" e "Avaliação" ficam preparados como filtros de interface.
-  // Enquanto não há API/reputação real, eles exibem todas as lojas.
-  return sortedOffers;
-}
-
-function renderOffers(filter = activeFilter) {
-  const filteredOffers = getFilteredOffers(filter);
-  const lowestPrice = Math.min(...ofertas.map((offer) => offer.preco));
-
-  if (!filteredOffers.length) {
-    offersBody.innerHTML = `
-      <tr>
-        <td class="empty-table-message" colspan="6">
-          Nenhuma oferta encontrada com este filtro.
-        </td>
-      </tr>
-    `;
-    return;
-  }
-
-  offersBody.innerHTML = filteredOffers
-    .map((offer) => {
-      const isLowestPrice = offer.preco === lowestPrice;
-      const isFreeShipping = offer.frete === "Grátis";
-
-      return `
-        <tr>
-          <td>
-            <div class="store-cell">
-              <span class="store-logo" style="--store-color: ${offer.cor}">
-                ${offer.sigla}
-              </span>
-              ${offer.loja}
-            </div>
-          </td>
-          <td class="price-cell ${isLowestPrice ? "best-price" : ""}">
-            ${formatCurrency(offer.preco)}
-          </td>
-          <td class="${isFreeShipping ? "shipping-free" : ""}">${offer.frete}</td>
-          <td>${offer.prazo}</td>
-          <td><span class="offer-pill">${offer.oferta}</span></td>
-          <td>
-            <a
-              class="buy-button ${isLowestPrice ? "green" : ""}"
-              href="${offer.linkAfiliado}"
-              target="_blank"
-              rel="noopener noreferrer sponsored"
-              data-store="${offer.loja}"
-            >
-              ${offer.textoBotao}
-            </a>
-          </td>
-        </tr>
-      `;
-    })
-    .join("");
-}
-
-function renderMoreProducts() {
-  productsGrid.innerHTML = produtosComparados
-    .map(
-      (product) => `
-        <article class="product-card">
-          <div class="product-card-image">
-            <img src="${product.imagem}" alt="${product.nome}" loading="lazy" />
-          </div>
-          <div>
-            <h3>${product.nome}</h3>
-            <span class="price-label">Menor preço</span>
-            <strong class="product-price">${formatCurrency(product.preco)}</strong>
-            <div class="mini-rating" aria-label="Avaliação ${product.avaliacao} de 5">
-              <span>${product.avaliacao}</span>
-              <span class="stars">★★★★★</span>
-            </div>
-            <button class="view-offers-button" type="button" data-product="${product.nome}">
-              Ver ofertas
-            </button>
-          </div>
-        </article>
-      `,
-    )
-    .join("");
-}
-
-// =========================================================
-// INTERAÇÕES
-// =========================================================
+let activeRequest;
 
 function showToast(message) {
   window.clearTimeout(toastTimer);
@@ -218,65 +31,272 @@ function showToast(message) {
 
   toastTimer = window.setTimeout(() => {
     toast.classList.remove("show");
-  }, 3000);
+  }, 3200);
+}
+
+function setLoading(isLoading) {
+  resultsPanel.setAttribute("aria-busy", String(isLoading));
+  searchButton.disabled = isLoading;
+  searchButton.classList.toggle("loading", isLoading);
+  searchButton.querySelector("span").textContent = isLoading ? "Buscando..." : "Buscar";
+
+  if (isLoading) {
+    productsGrid.hidden = true;
+    searchState.hidden = false;
+    searchState.className = "search-state loading-state";
+    searchState.innerHTML = `
+      <span class="loading-spinner" aria-hidden="true"></span>
+      <h3>Consultando a Amazon...</h3>
+      <p>Buscando produtos, preços e disponibilidade.</p>
+    `;
+  }
+}
+
+function setEmptyState(title, message, type = "empty") {
+  productsGrid.hidden = true;
+  productsGrid.replaceChildren();
+  searchState.hidden = false;
+  searchState.className = `search-state ${type === "error" ? "error-state" : ""}`;
+
+  const icon = document.createElement("span");
+  icon.className = "search-state-icon";
+  icon.textContent = type === "error" ? "!" : "⌕";
+
+  const heading = document.createElement("h3");
+  heading.textContent = title;
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = message;
+
+  searchState.replaceChildren(icon, heading, paragraph);
+}
+
+function isAvailable(product) {
+  const unavailableTerms = [
+    "indisponível",
+    "esgotado",
+    "out of stock",
+    "unavailable",
+    "fora de estoque",
+  ];
+  const availability = String(product.disponibilidade || "").toLowerCase();
+
+  return !unavailableTerms.some((term) => availability.includes(term));
+}
+
+function getVisibleProducts() {
+  if (activeFilter === "with-price") {
+    return products.filter((product) => Boolean(product.preco));
+  }
+
+  if (activeFilter === "available") {
+    return products.filter(isAvailable);
+  }
+
+  return products;
+}
+
+function createProductImage(product) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "amazon-product-image";
+
+  if (!product.imagem) {
+    wrapper.classList.add("image-placeholder");
+    wrapper.textContent = "Imagem indisponível";
+    return wrapper;
+  }
+
+  const image = document.createElement("img");
+  image.src = product.imagem;
+  image.alt = product.nome;
+  image.loading = "lazy";
+  image.referrerPolicy = "no-referrer";
+  image.addEventListener("error", () => {
+    wrapper.classList.add("image-placeholder");
+    wrapper.textContent = "Imagem indisponível";
+    image.remove();
+  });
+  wrapper.append(image);
+
+  return wrapper;
+}
+
+function createProductCard(product) {
+  const article = document.createElement("article");
+  article.className = "amazon-product-card";
+
+  const image = createProductImage(product);
+  const content = document.createElement("div");
+  content.className = "amazon-product-content";
+
+  const source = document.createElement("span");
+  source.className = "amazon-source";
+  source.textContent = `Amazon • ASIN ${product.asin}`;
+
+  const title = document.createElement("h3");
+  title.textContent = product.nome;
+
+  const availability = document.createElement("span");
+  availability.className = `availability-badge ${isAvailable(product) ? "available" : "unavailable"}`;
+  availability.textContent = product.disponibilidade || "Consulte a disponibilidade";
+
+  const priceLabel = document.createElement("span");
+  priceLabel.className = "amazon-price-label";
+  priceLabel.textContent = product.preco ? "Preço informado" : "Preço não exibido pela API";
+
+  const price = document.createElement("strong");
+  price.className = `amazon-price ${product.preco ? "" : "price-unavailable"}`;
+  price.textContent = product.preco || "Ver preço na Amazon";
+
+  const link = document.createElement("a");
+  link.className = "amazon-link";
+  link.href = product.linkAfiliado;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer sponsored";
+  link.textContent = "Ver na Amazon";
+  link.setAttribute("aria-label", `Ver ${product.nome} na Amazon`);
+  link.addEventListener("click", () => showToast("Abrindo o produto na Amazon."));
+
+  content.append(source, title, availability, priceLabel, price, link);
+  article.append(image, content);
+
+  return article;
+}
+
+function renderProducts() {
+  const visibleProducts = getVisibleProducts();
+  productsGrid.replaceChildren();
+
+  if (!visibleProducts.length) {
+    setEmptyState(
+      "Nenhum produto neste filtro",
+      "Tente outro filtro ou faça uma nova pesquisa.",
+    );
+    resultsCount.textContent = "0 produtos";
+    return;
+  }
+
+  visibleProducts.forEach((product) => {
+    productsGrid.append(createProductCard(product));
+  });
+
+  searchState.hidden = true;
+  productsGrid.hidden = false;
+  resultsCount.textContent = `${visibleProducts.length} ${
+    visibleProducts.length === 1 ? "produto" : "produtos"
+  }`;
+}
+
+async function searchProducts(term, { scrollToResults = true } = {}) {
+  if (activeRequest) {
+    activeRequest.abort();
+  }
+
+  const requestController = new AbortController();
+  activeRequest = requestController;
+  setLoading(true);
+  resultsEyebrow.textContent = "Buscando produtos";
+  resultsTitle.textContent = `Resultados para “${term}”`;
+  resultsCount.textContent = "";
+  searchFeedback.textContent = `Buscando produtos para: ${term}`;
+
+  if (scrollToResults) {
+    resultsPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  const pageUrl = new URL(window.location.href);
+  pageUrl.searchParams.set("q", term);
+  window.history.replaceState({}, "", pageUrl);
+
+  try {
+    const endpoint = `${API_BASE_URL.replace(/\/$/, "")}/api/search?q=${encodeURIComponent(term)}`;
+    const response = await fetch(endpoint, {
+      headers: { Accept: "application/json" },
+      signal: requestController.signal,
+    });
+
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        payload.mensagem ||
+          "Não foi possível consultar os produtos agora. Tente novamente em instantes.",
+      );
+    }
+
+    products = Array.isArray(payload.produtos) ? payload.produtos : [];
+    activeFilter = "relevance";
+    filterButtons.forEach((button) => {
+      button.classList.toggle("active", button.dataset.filter === activeFilter);
+    });
+
+    resultsEyebrow.textContent = "Produtos encontrados";
+
+    if (!products.length) {
+      setEmptyState(
+        "Nenhum produto encontrado",
+        "Tente pesquisar usando menos palavras ou um termo diferente.",
+      );
+      resultsCount.textContent = "0 produtos";
+      searchFeedback.textContent = `Nenhum resultado encontrado para: ${term}`;
+      return;
+    }
+
+    renderProducts();
+    searchFeedback.textContent = `${products.length} produtos encontrados para: ${term}`;
+  } catch (error) {
+    if (error.name === "AbortError") return;
+
+    products = [];
+    resultsEyebrow.textContent = "Não foi possível concluir";
+    resultsCount.textContent = "";
+    setEmptyState(
+      "A busca está indisponível",
+      error.message || "Ocorreu um erro inesperado. Tente novamente mais tarde.",
+      "error",
+    );
+    searchFeedback.textContent = "Não foi possível carregar os produtos.";
+    showToast("Não foi possível consultar a Amazon agora.");
+  } finally {
+    if (activeRequest === requestController) {
+      setLoading(false);
+      activeRequest = null;
+    }
+  }
 }
 
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const term = searchInput.value.trim();
 
-  if (!term) {
-    searchFeedback.textContent = "Digite um produto para iniciar a busca.";
+  if (term.length < 2) {
+    searchFeedback.textContent = "Digite pelo menos 2 caracteres para pesquisar.";
     searchInput.focus();
     return;
   }
 
-  searchFeedback.textContent = `Buscando ofertas para: ${term}`;
-  showToast(`Buscando ofertas para: ${term}`);
+  searchProducts(term);
+});
 
-  document.querySelector("#comparar").scrollIntoView({
-    behavior: "smooth",
-    block: "start",
+quickSearchButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    searchInput.value = button.dataset.query;
+    searchProducts(button.dataset.query);
   });
 });
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     activeFilter = button.dataset.filter;
-
     filterButtons.forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
-    renderOffers(activeFilter);
 
-    const messages = {
-      lowest: "Ofertas ordenadas pelo menor preço.",
-      "free-shipping": "Mostrando apenas ofertas com frete grátis.",
-      coupon: "Mostrando ofertas com cupom disponível.",
-      store: "Todas as lojas parceiras estão visíveis.",
-      rating: "Avaliações das lojas serão integradas futuramente.",
-    };
-
-    showToast(messages[activeFilter]);
+    if (products.length) {
+      renderProducts();
+    } else {
+      showToast("Faça uma pesquisa para usar os filtros.");
+    }
   });
-});
-
-offersBody.addEventListener("click", (event) => {
-  const affiliateLink = event.target.closest(".buy-button");
-
-  if (affiliateLink) {
-    showToast(`Abrindo a oferta da ${affiliateLink.dataset.store} em uma nova aba.`);
-  }
-});
-
-productsGrid.addEventListener("click", (event) => {
-  const productButton = event.target.closest(".view-offers-button");
-
-  if (!productButton) return;
-
-  searchInput.value = productButton.dataset.product;
-  searchFeedback.textContent = `Buscando ofertas para: ${productButton.dataset.product}`;
-  showToast(`Produto selecionado: ${productButton.dataset.product}`);
-  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 mobileMenuButton.addEventListener("click", () => {
@@ -294,8 +314,9 @@ mainNavigation.addEventListener("click", (event) => {
   mobileMenuButton.setAttribute("aria-expanded", "false");
 });
 
-// Renderização inicial da página.
-renderOffers();
-renderMoreProducts();
+const initialQuery = new URLSearchParams(window.location.search).get("q")?.trim();
 
-console.info("Produto em destaque:", produtoDestaque.nome);
+if (initialQuery && initialQuery.length >= 2) {
+  searchInput.value = initialQuery;
+  searchProducts(initialQuery, { scrollToResults: false });
+}

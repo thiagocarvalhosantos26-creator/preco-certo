@@ -26,6 +26,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -362,6 +366,270 @@ svg {
   align-items: start;
   gap: 24px;
   padding-bottom: 64px;
+}
+
+.results-panel {
+  min-height: 420px;
+  scroll-margin-top: 96px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-sm);
+}
+
+.results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(110deg, #fff, #f7faff);
+}
+
+.results-heading h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: -0.035em;
+}
+
+.results-count {
+  flex: 0 0 auto;
+  color: var(--green-700);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.search-state {
+  display: grid;
+  min-height: 350px;
+  padding: 50px 24px;
+  place-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.search-state-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 17px;
+  place-items: center;
+  color: var(--blue-600);
+  border-radius: 20px;
+  background: var(--blue-100);
+  font-size: 2rem;
+  font-weight: 850;
+}
+
+.search-state-icon svg {
+  width: 29px;
+  height: 29px;
+  stroke-width: 2;
+}
+
+.search-state h3 {
+  margin: 0;
+  font-size: 1.28rem;
+  letter-spacing: -0.025em;
+}
+
+.search-state p {
+  max-width: 470px;
+  margin: 9px 0 0;
+  color: var(--ink-600);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.quick-searches {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.quick-searches button {
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--blue-700);
+  border: 1px solid #d8e7ff;
+  border-radius: 999px;
+  background: #f5f9ff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.quick-searches button:hover {
+  border-color: #a9c8fa;
+  background: #eaf3ff;
+}
+
+.loading-spinner {
+  width: 45px;
+  height: 45px;
+  margin-bottom: 18px;
+  border: 4px solid #dfeaff;
+  border-top-color: var(--blue-600);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.error-state .search-state-icon {
+  color: #b42318;
+  background: #fff0ee;
+}
+
+.amazon-products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.amazon-product-card {
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.amazon-product-card:hover {
+  border-color: #bfd2ee;
+  box-shadow: 0 12px 28px rgba(22, 48, 92, 0.09);
+  transform: translateY(-2px);
+}
+
+.amazon-product-image {
+  display: grid;
+  min-height: 225px;
+  padding: 14px;
+  place-items: center;
+  background: #fff;
+}
+
+.amazon-product-image img {
+  width: 100%;
+  height: 100%;
+  max-height: 210px;
+  object-fit: contain;
+}
+
+.amazon-product-image.image-placeholder {
+  color: var(--ink-500);
+  background: #f6f8fc;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.amazon-product-content {
+  display: flex;
+  min-width: 0;
+  padding: 17px 17px 17px 2px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.amazon-source {
+  color: var(--ink-500);
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.amazon-product-content h3 {
+  display: -webkit-box;
+  margin: 8px 0 10px;
+  overflow: hidden;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  letter-spacing: -0.012em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.availability-badge {
+  display: inline-flex;
+  max-width: 100%;
+  margin-bottom: 17px;
+  padding: 5px 8px;
+  overflow: hidden;
+  border-radius: 7px;
+  font-size: 0.64rem;
+  font-weight: 750;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.availability-badge.available {
+  color: var(--green-700);
+  border: 1px solid #d5efdd;
+  background: var(--green-100);
+}
+
+.availability-badge.unavailable {
+  color: #9f3a32;
+  border: 1px solid #f4d5d1;
+  background: #fff1ef;
+}
+
+.amazon-price-label {
+  margin-top: auto;
+  color: var(--ink-500);
+  font-size: 0.65rem;
+}
+
+.amazon-price {
+  display: block;
+  margin: 3px 0 12px;
+  color: var(--blue-600);
+  font-size: 1.17rem;
+  letter-spacing: -0.035em;
+}
+
+.amazon-price.price-unavailable {
+  color: var(--ink-800);
+  font-size: 0.84rem;
+}
+
+.amazon-link {
+  display: inline-flex;
+  width: 100%;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  color: #fff;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #0875f5, #0754da);
+  box-shadow: 0 7px 16px rgba(7, 94, 224, 0.18);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.amazon-link:hover {
+  background: var(--blue-700);
+}
+
+.search-box > button:disabled {
+  cursor: wait;
+  opacity: 0.78;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .primary-column {
@@ -1136,6 +1404,10 @@ svg {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .amazon-products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .product-card {
     grid-template-columns: 1fr;
   }
@@ -1239,6 +1511,11 @@ svg {
     grid-template-columns: 1fr;
   }
 
+  .amazon-products-grid {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
   .product-card {
     grid-template-columns: minmax(120px, 0.8fr) minmax(150px, 1fr);
   }
@@ -1309,6 +1586,31 @@ svg {
 
   .mini-rating {
     justify-content: center;
+  }
+
+  .results-heading {
+    align-items: flex-start;
+    padding: 19px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .search-state {
+    min-height: 315px;
+    padding: 42px 18px;
+  }
+
+  .amazon-product-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+  }
+
+  .amazon-product-image {
+    min-height: 215px;
+    padding: 9px;
+  }
+
+  .amazon-product-content {
+    padding: 14px 13px 14px 0;
   }
 }
 
