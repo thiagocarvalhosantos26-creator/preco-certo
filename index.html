@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Compare preços, frete e condições de compra no PreçoCerto."
+    />
+    <meta name="theme-color" content="#075ee8" />
+    <title>PreçoCerto — Compare preços e economize</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Biblioteca de ícones SVG usada em toda a interface. -->
+    <svg class="icon-library" aria-hidden="true">
+      <symbol id="icon-tag" viewBox="0 0 24 24">
+        <path d="M20.6 13.2 11.8 22 2 12.2V2h10.2l8.4 8.4a2 2 0 0 1 0 2.8Z" />
+        <circle cx="7.3" cy="7.3" r="1.5" />
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-4-4" />
+      </symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4.5 21a7.5 7.5 0 0 1 15 0" />
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </symbol>
+      <symbol id="icon-dollar" viewBox="0 0 24 24">
+        <path d="M12 2v20M17 6.5c-1-1-2.4-1.5-4-1.5-2.2 0-4 1.2-4 3s1.5 2.6 4 3.2 4 1.4 4 3.3S15.2 18 12.6 18c-2 0-3.8-.7-5-2" />
+      </symbol>
+      <symbol id="icon-truck" viewBox="0 0 24 24">
+        <path d="M3 5h11v11H3zM14 9h4l3 3v4h-7z" />
+        <circle cx="7" cy="18" r="2" />
+        <circle cx="18" cy="18" r="2" />
+      </symbol>
+      <symbol id="icon-ticket" viewBox="0 0 24 24">
+        <path d="M3 9a2 2 0 0 0 0 4v5h18v-5a2 2 0 0 0 0-4V4H3z" />
+        <path d="M13 7h4M13 11h4M13 15h4" />
+      </symbol>
+      <symbol id="icon-store" viewBox="0 0 24 24">
+        <path d="M4 10v10h16V10M3 10l2-6h14l2 6" />
+        <path d="M8 10v2a2 2 0 0 1-4 0v-2M12 10v2a2 2 0 0 1-4 0v-2M16 10v2a2 2 0 0 1-4 0v-2M20 10v2a2 2 0 0 1-4 0v-2" />
+      </symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z" />
+      </symbol>
+      <symbol id="icon-info" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 11v5M12 8h.01" />
+      </symbol>
+      <symbol id="icon-coupon" viewBox="0 0 24 24">
+        <path d="m4 12 8-8h7l1 1v7l-8 8-8-8Z" />
+        <circle cx="16" cy="8" r="1" />
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v6l4 2" />
+      </symbol>
+      <symbol id="icon-cart" viewBox="0 0 24 24">
+        <path d="M3 4h2l2.2 11h10.6L20 8H7" />
+        <circle cx="9" cy="19" r="1.5" />
+        <circle cx="17" cy="19" r="1.5" />
+      </symbol>
+      <symbol id="icon-scale" viewBox="0 0 24 24">
+        <path d="M12 3v18M5 6h14M7 6l-4 7h8L7 6ZM17 6l-4 7h8l-4-7ZM8 21h8" />
+      </symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M14 7l5 5-5 5" />
+      </symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#inicio" aria-label="PreçoCerto - página inicial">
+          <span class="brand-mark">
+            <svg><use href="#icon-tag"></use></svg>
+          </span>
+          <span>Preço<span>Certo</span></span>
+        </a>
+
+        <button
+          class="mobile-menu-button"
+          id="mobileMenuButton"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="mainNavigation"
+        >
+          <svg><use href="#icon-menu"></use></svg>
+        </button>
+
+        <nav class="main-navigation" id="mainNavigation" aria-label="Navegação principal">
+          <a class="active" href="#inicio">Início</a>
+          <a href="#comparar">Comparar</a>
+          <a href="#ofertas">Ofertas</a>
+          <a href="#guias">Guias</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <button class="login-button" type="button">
+          <svg><use href="#icon-user"></use></svg>
+          Entrar
+        </button>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero container" aria-labelledby="hero-title">
+        <div class="hero-badge">
+          <span></span>
+          Compare antes de comprar
+        </div>
+        <h1 id="hero-title">Compare preços e encontre a melhor oferta</h1>
+        <p>Pesquise produtos, veja onde está mais barato e compre pelos links indicados.</p>
+
+        <form class="search-box" id="searchForm">
+          <label class="search-field" for="searchInput">
+            <svg><use href="#icon-search"></use></svg>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Digite o nome do produto..."
+              autocomplete="off"
+            />
+          </label>
+          <button type="submit">Buscar</button>
+        </form>
+
+        <p class="search-feedback" id="searchFeedback" aria-live="polite"></p>
+
+        <div class="filter-list" aria-label="Filtros de ofertas">
+          <button class="filter-button active" type="button" data-filter="lowest">
+            <svg><use href="#icon-dollar"></use></svg>
+            Menor preço
+          </button>
+          <button class="filter-button" type="button" data-filter="free-shipping">
+            <svg><use href="#icon-truck"></use></svg>
+            Frete grátis
+          </button>
+          <button class="filter-button" type="button" data-filter="coupon">
+            <svg><use href="#icon-ticket"></use></svg>
+            Cupom
+          </button>
+          <button class="filter-button" type="button" data-filter="store">
+            <svg><use href="#icon-store"></use></svg>
+            Loja
+          </button>
+          <button class="filter-button" type="button" data-filter="rating">
+            <svg><use href="#icon-star"></use></svg>
+            Avaliação
+          </button>
+        </div>
+      </section>
+
+      <div class="container content-layout">
+        <div class="primary-column">
+          <section class="comparison-card" id="comparar" aria-labelledby="comparison-title">
+            <article class="featured-product">
+              <div class="product-image-wrap">
+                <span class="best-label">Mais buscado</span>
+                <img
+                  src="assets/smartphone.webp"
+                  alt="Smartphone genérico escuro visto de frente e de costas"
+                />
+              </div>
+              <div class="featured-product-info">
+                <span class="eyebrow">Destaque da semana</span>
+                <h2 id="comparison-title">Smartphone XPro 128GB</h2>
+                <div class="rating-row" aria-label="Avaliação 4,8 de 5">
+                  <span class="stars">★★★★★</span>
+                  <small>4.8 (1.245 avaliações)</small>
+                </div>
+                <span class="average-label">Preço médio</span>
+                <strong class="average-price">R$ 1.964,00</strong>
+                <span class="value-badge">
+                  <svg><use href="#icon-scale"></use></svg>
+                  Melhor custo-benefício
+                </span>
+              </div>
+            </article>
+
+            <div class="offers-area">
+              <div class="offers-heading">
+                <div>
+                  <span class="eyebrow">4 lojas encontradas</span>
+                  <h3>Ofertas disponíveis</h3>
+                </div>
+                <span class="updated-at">Atualizado agora</span>
+              </div>
+
+              <div class="table-scroll">
+                <table class="offers-table">
+                  <thead>
+                    <tr>
+                      <th>Loja</th>
+                      <th>Preço</th>
+                      <th>Frete</th>
+                      <th>Prazo</th>
+                      <th>Oferta</th>
+                      <th>Comprar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="offersBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <p class="affiliate-notice">
+            <svg><use href="#icon-info"></use></svg>
+            Alguns links são de afiliados e podem gerar comissão sem custo extra para você.
+          </p>
+
+          <section class="more-products" id="ofertas" aria-labelledby="more-products-title">
+            <div class="section-heading">
+              <div>
+                <span class="eyebrow">Escolhas populares</span>
+                <h2 id="more-products-title">Mais produtos comparados</h2>
+              </div>
+              <button class="text-button" type="button">
+                Ver todos
+                <svg><use href="#icon-arrow"></use></svg>
+              </button>
+            </div>
+            <div class="products-grid" id="moreProductsGrid"></div>
+          </section>
+        </div>
+
+        <aside class="sidebar" aria-label="Informações úteis">
+          <section class="side-card how-it-works" id="guias">
+            <span class="side-card-kicker">É simples e seguro</span>
+            <h2>Como o site funciona</h2>
+
+            <ol class="steps-list">
+              <li>
+                <span class="step-icon step-blue">
+                  <svg><use href="#icon-search"></use></svg>
+                </span>
+                <div>
+                  <strong>1. Pesquise o produto</strong>
+                  <p>Use a busca para encontrar o produto que deseja.</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-icon step-green">
+                  <svg><use href="#icon-scale"></use></svg>
+                </span>
+                <div>
+                  <strong>2. Compare os preços</strong>
+                  <p>Veja os preços, frete, prazo e ofertas das principais lojas.</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-icon step-purple">
+                  <svg><use href="#icon-cart"></use></svg>
+                </span>
+                <div>
+                  <strong>3. Compre pelo link indicado</strong>
+                  <p>Clique em “Ir para oferta” e finalize sua compra na loja.</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="side-card savings-card">
+            <span class="side-card-kicker">Antes de finalizar</span>
+            <h2>Dicas para economizar</h2>
+            <ul class="tips-list">
+              <li>
+                <span class="tip-icon green"><svg><use href="#icon-coupon"></use></svg></span>
+                Ative cupons de desconto antes de comprar.
+              </li>
+              <li>
+                <span class="tip-icon orange"><svg><use href="#icon-truck"></use></svg></span>
+                Prefira lojas com frete grátis.
+              </li>
+              <li>
+                <span class="tip-icon blue"><svg><use href="#icon-clock"></use></svg></span>
+                Compare o prazo de entrega.
+              </li>
+              <li>
+                <span class="tip-icon purple"><svg><use href="#icon-star"></use></svg></span>
+                Avalie a reputação da loja e do produto.
+              </li>
+            </ul>
+          </section>
+
+          <section class="trust-card">
+            <span class="trust-icon">✓</span>
+            <div>
+              <strong>Escolha com confiança</strong>
+              <p>Informações organizadas para facilitar a sua decisão.</p>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer" id="contato">
+      <div class="container footer-inner">
+        <a class="brand footer-brand" href="#inicio">
+          <span class="brand-mark">
+            <svg><use href="#icon-tag"></use></svg>
+          </span>
+          <span>Preço<span>Certo</span></span>
+        </a>
+        <p>Compare com calma. Economize de verdade.</p>
+        <a href="mailto:contato@precocerto.exemplo">contato@precocerto.exemplo</a>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
