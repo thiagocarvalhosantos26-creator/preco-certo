@@ -1,5 +1,5 @@
 const PRODUCT = {
-  affiliateUrl: "https://www.amazon.com.br/s?k=AMD+Ryzen+5+4600G&tag=thiago2607-20",
+  affiliateUrl: "https://www.amazon.com.br/dp/B09Z5NH6SJ?tag=thiago2607-20",
 };
 
 const affiliateLinks = document.querySelectorAll("[data-affiliate-link]");
