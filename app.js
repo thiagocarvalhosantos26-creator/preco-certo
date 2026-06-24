@@ -1,7 +1,7 @@
 // URL pública do backend.
 // Em produção, troque pelo endereço HTTPS onde a pasta backend/ foi publicada.
 // Exemplo: "https://api.seudominio.com"
-const API_BASE_URL = window.PRECOCERTO_API_URL || "http://localhost:3000";
+const API_BASE_URL = window.PRECOCERTO_API_URL || "https://preco-certo-backend.onrender.com";
 
 const searchForm = document.querySelector("#searchForm");
 const searchInput = document.querySelector("#searchInput");
