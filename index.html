@@ -5,276 +5,313 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Compare preços, frete e condições de compra no PreçoCerto."
+      content="Landing page do PreçoCerto para consultar preço e disponibilidade do AMD Ryzen 5 4600G na Amazon."
     />
-    <meta name="theme-color" content="#075ee8" />
-    <title>PreçoCerto — Compare preços e economize</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="app.js" defer></script>
+    <meta name="theme-color" content="#0b63ea" />
+    <title>AMD Ryzen 5 4600G | PreçoCerto</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
   </head>
 
   <body>
-    <!-- Biblioteca de ícones SVG usada em toda a interface. -->
-    <svg class="icon-library" aria-hidden="true">
-      <symbol id="icon-tag" viewBox="0 0 24 24">
-        <path d="M20.6 13.2 11.8 22 2 12.2V2h10.2l8.4 8.4a2 2 0 0 1 0 2.8Z" />
-        <circle cx="7.3" cy="7.3" r="1.5" />
-      </symbol>
-      <symbol id="icon-search" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="7" />
-        <path d="m20 20-4-4" />
-      </symbol>
-      <symbol id="icon-user" viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4" />
-        <path d="M4.5 21a7.5 7.5 0 0 1 15 0" />
-      </symbol>
-      <symbol id="icon-menu" viewBox="0 0 24 24">
-        <path d="M4 7h16M4 12h16M4 17h16" />
-      </symbol>
-      <symbol id="icon-dollar" viewBox="0 0 24 24">
-        <path d="M12 2v20M17 6.5c-1-1-2.4-1.5-4-1.5-2.2 0-4 1.2-4 3s1.5 2.6 4 3.2 4 1.4 4 3.3S15.2 18 12.6 18c-2 0-3.8-.7-5-2" />
-      </symbol>
-      <symbol id="icon-truck" viewBox="0 0 24 24">
-        <path d="M3 5h11v11H3zM14 9h4l3 3v4h-7z" />
-        <circle cx="7" cy="18" r="2" />
-        <circle cx="18" cy="18" r="2" />
-      </symbol>
-      <symbol id="icon-ticket" viewBox="0 0 24 24">
-        <path d="M3 9a2 2 0 0 0 0 4v5h18v-5a2 2 0 0 0 0-4V4H3z" />
-        <path d="M13 7h4M13 11h4M13 15h4" />
-      </symbol>
-      <symbol id="icon-store" viewBox="0 0 24 24">
-        <path d="M4 10v10h16V10M3 10l2-6h14l2 6" />
-        <path d="M8 10v2a2 2 0 0 1-4 0v-2M12 10v2a2 2 0 0 1-4 0v-2M16 10v2a2 2 0 0 1-4 0v-2M20 10v2a2 2 0 0 1-4 0v-2" />
-      </symbol>
-      <symbol id="icon-star" viewBox="0 0 24 24">
-        <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z" />
-      </symbol>
-      <symbol id="icon-info" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 11v5M12 8h.01" />
-      </symbol>
-      <symbol id="icon-coupon" viewBox="0 0 24 24">
-        <path d="m4 12 8-8h7l1 1v7l-8 8-8-8Z" />
-        <circle cx="16" cy="8" r="1" />
-      </symbol>
-      <symbol id="icon-clock" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v6l4 2" />
-      </symbol>
-      <symbol id="icon-cart" viewBox="0 0 24 24">
-        <path d="M3 4h2l2.2 11h10.6L20 8H7" />
-        <circle cx="9" cy="19" r="1.5" />
-        <circle cx="17" cy="19" r="1.5" />
-      </symbol>
-      <symbol id="icon-scale" viewBox="0 0 24 24">
-        <path d="M12 3v18M5 6h14M7 6l-4 7h8L7 6ZM17 6l-4 7h8l-4-7ZM8 21h8" />
-      </symbol>
-      <symbol id="icon-arrow" viewBox="0 0 24 24">
-        <path d="M5 12h14M14 7l5 5-5 5" />
-      </symbol>
-    </svg>
-
     <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#inicio" aria-label="PreçoCerto - página inicial">
-          <span class="brand-mark">
-            <svg><use href="#icon-tag"></use></svg>
+      <div class="nav-wrapper">
+        <a class="brand" href="#inicio" aria-label="PreçoCerto - início">
+          <span class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M20.4 13.2 11.6 22 2 12.4V2h10.4l8 8a2.2 2.2 0 0 1 0 3.2Z" />
+              <circle cx="7.3" cy="7.3" r="1.5" />
+            </svg>
           </span>
           <span>Preço<span>Certo</span></span>
         </a>
 
         <button
-          class="mobile-menu-button"
-          id="mobileMenuButton"
+          class="menu-toggle"
+          id="menuToggle"
           type="button"
           aria-label="Abrir menu"
           aria-expanded="false"
-          aria-controls="mainNavigation"
+          aria-controls="navMenu"
         >
-          <svg><use href="#icon-menu"></use></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
         </button>
 
-        <nav class="main-navigation" id="mainNavigation" aria-label="Navegação principal">
+        <nav class="nav-menu" id="navMenu" aria-label="Navegação principal">
           <a class="active" href="#inicio">Início</a>
-          <a href="#comparar">Resultados</a>
-          <a href="#comparar">Ofertas</a>
+          <a href="#ofertas">Ofertas</a>
           <a href="#guias">Guias</a>
           <a href="#contato">Contato</a>
         </nav>
 
-        <button class="login-button" type="button">
-          <svg><use href="#icon-user"></use></svg>
-          Entrar
-        </button>
+        <a class="amazon-button header-button" href="#" data-affiliate-link>
+          <span class="amazon-glyph" aria-hidden="true">a</span>
+          <span>Ver na Amazon</span>
+        </a>
       </div>
     </header>
 
     <main id="inicio">
-      <section class="hero container" aria-labelledby="hero-title">
-        <div class="hero-badge">
-          <span></span>
-          Compare antes de comprar
-        </div>
-        <h1 id="hero-title">Encontre produtos e ofertas na Amazon</h1>
-        <p>Pesquise o que precisa e acesse produtos reais pelos links indicados.</p>
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-media">
+            <div class="product-visual">
+              <img
+                src="assets/ryzen-5-4600g-real.jpg"
+                onerror="this.onerror=null;this.src='assets/product-placeholder.svg';"
+                alt="AMD Ryzen 5 4600G"
+              />
+            </div>
+          </div>
 
-        <form class="search-box" id="searchForm">
-          <label class="search-field" for="searchInput">
-            <svg><use href="#icon-search"></use></svg>
-            <input
-              id="searchInput"
-              type="search"
-              placeholder="Digite o nome do produto..."
-              autocomplete="off"
-            />
-          </label>
-          <button id="searchButton" type="submit">
-            <span>Buscar</span>
-          </button>
-        </form>
+          <div class="hero-content">
+            <span class="trust-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 19 6v5.2c0 4.3-2.8 8.2-7 9.8-4.2-1.6-7-5.5-7-9.8V6l7-3Z" />
+                <path d="m9.3 12.1 1.8 1.8 3.8-4.2" />
+              </svg>
+              Consulte preço e disponibilidade na Amazon
+            </span>
 
-        <p class="search-feedback" id="searchFeedback" aria-live="polite"></p>
+            <h1 class="hero-title">AMD Ryzen 5 4600G</h1>
+            <p class="hero-subtitle">O processador ideal para montar um PC barato e eficiente</p>
+            <p class="hero-description">
+              Desempenho com gráficos integrados Radeon, ideal para quem busca economia sem abrir
+              mão de performance. Uma boa opção para jogos leves, trabalho, estudos e uso diário.
+            </p>
 
-        <div class="filter-list" id="filterList" aria-label="Filtros de resultados">
-          <button class="filter-button active" type="button" data-filter="relevance">
-            <svg><use href="#icon-dollar"></use></svg>
-            Relevância
-          </button>
-          <button class="filter-button" type="button" data-filter="with-price">
-            <svg><use href="#icon-ticket"></use></svg>
-            Com preço
-          </button>
-          <button class="filter-button" type="button" data-filter="available">
-            <svg><use href="#icon-store"></use></svg>
-            Disponíveis
-          </button>
+            <a class="amazon-button hero-button" href="#" data-affiliate-link>
+              <span class="amazon-glyph" aria-hidden="true">a</span>
+              <span>Ver na Amazon</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M14 7l5 5-5 5" />
+              </svg>
+            </a>
+
+            <div class="spec-list" aria-label="Principais características">
+              <span class="spec-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="7" y="7" width="10" height="10" rx="1.5" />
+                  <path d="M4 9h3M4 15h3M17 9h3M17 15h3M9 4v3M15 4v3M9 17v3M15 17v3" />
+                </svg>
+                6 núcleos
+              </span>
+              <span class="spec-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" />
+                </svg>
+                12 threads
+              </span>
+              <span class="spec-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="12" rx="1.6" />
+                  <path d="M9 21h6M12 17v4" />
+                </svg>
+                Gráficos integrados
+              </span>
+              <span class="spec-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z" />
+                </svg>
+                Ótimo custo-benefício
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <div class="container content-layout">
-        <div class="primary-column">
-          <section
-            class="results-panel"
-            id="comparar"
-            aria-labelledby="results-title"
-            aria-busy="false"
-          >
-            <div class="results-heading">
-              <div>
-                <span class="eyebrow" id="resultsEyebrow">Pesquisa de produtos</span>
-                <h2 id="results-title">Resultados da Amazon</h2>
-              </div>
-              <span class="results-count" id="resultsCount"></span>
-            </div>
+      <section class="benefits" id="ofertas" aria-label="Benefícios do AMD Ryzen 5 4600G">
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="7" y="7" width="10" height="10" rx="1.5" />
+                <path d="M4 9h3M4 15h3M17 9h3M17 15h3M9 4v3M15 4v3M9 17v3M15 17v3" />
+              </svg>
+            </span>
+            <h2>6 núcleos e 12 threads</h2>
+            <p>Bom desempenho em multitarefas, apps, produtividade e jogos leves.</p>
+          </article>
 
-            <div class="search-state" id="searchState">
-              <span class="search-state-icon">
-                <svg><use href="#icon-search"></use></svg>
-              </span>
-              <h3>O que você está procurando?</h3>
-              <p>Digite um produto na busca acima para consultar o catálogo da Amazon.</p>
-              <div class="quick-searches" aria-label="Sugestões de busca">
-                <button type="button" data-query="fone bluetooth">Fone bluetooth</button>
-                <button type="button" data-query="notebook">Notebook</button>
-                <button type="button" data-query="smart tv">Smart TV</button>
-              </div>
-            </div>
+          <article class="benefit-card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 7h12v10H4zM16 10h4M16 14h4M7 10h5M7 14h3" />
+                <circle cx="13" cy="12" r="2" />
+              </svg>
+            </span>
+            <h2>Gráficos Radeon integrados</h2>
+            <p>Permite começar sem precisar comprar uma placa de vídeo dedicada.</p>
+          </article>
 
-            <div class="amazon-products-grid" id="amazonProductsGrid" hidden></div>
-          </section>
+          <article class="benefit-card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="12" rx="1.6" />
+                <path d="M9 21h6M12 17v4" />
+              </svg>
+            </span>
+            <h2>Ideal para PC de entrada</h2>
+            <p>Monte um PC econômico para estudos, trabalho e uso diário.</p>
+          </article>
 
-          <p class="affiliate-notice">
-            <svg><use href="#icon-info"></use></svg>
-            Como Associado Amazon, posso receber comissão por compras qualificadas feitas pelos
-            links deste site, sem custo extra para você.
+          <article class="benefit-card">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2.7 14.1 5l3.1-.3.9 3 2.7 1.5-1.2 2.8 1.2 2.8-2.7 1.5-.9 3-3.1-.3-2.1 2.3-2.1-2.3-3.1.3-.9-3-2.7-1.5L4.4 12 3.2 9.2l2.7-1.5.9-3 3.1.3L12 2.7Z" />
+                <path d="M12 7.7v8.6M14.7 9.2c-.7-.6-1.6-.9-2.6-.9-1.5 0-2.7.7-2.7 1.9s1 1.7 2.8 2.1c1.8.4 2.8.9 2.8 2.1s-1.2 2-2.9 2c-1.3 0-2.5-.4-3.2-1.2" />
+              </svg>
+            </span>
+            <h2>Excelente custo-benefício</h2>
+            <p>Uma escolha interessante para quem quer economizar na montagem.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="split-section" id="guias">
+        <article class="why-copy">
+          <div class="section-heading">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z" />
+              </svg>
+            </span>
+            <h2>Por que escolher o Ryzen 5 4600G?</h2>
+          </div>
+
+          <p>
+            O Ryzen 5 4600G é uma escolha inteligente para quem quer montar um PC barato e
+            eficiente sem depender inicialmente de uma placa de vídeo dedicada. Com 6 núcleos e 12
+            threads, ele oferece bom desempenho em tarefas do dia a dia, estudos, trabalho, edição
+            leve e jogos populares com gráficos integrados Radeon.
           </p>
+
+          <p>
+            Ele também é uma opção interessante para quem deseja montar um computador com bom
+            equilíbrio entre economia, desempenho e possibilidade de upgrade no futuro.
+          </p>
+        </article>
+
+        <aside class="checklist-card">
+          <div class="section-heading compact">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM17 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                <path d="M3.6 19a5.4 5.4 0 0 1 10.8 0M14.4 16.2a4.6 4.6 0 0 1 6 2.8" />
+              </svg>
+            </span>
+            <h2>Para quem ele é indicado</h2>
+          </div>
+
+          <ul class="checklist">
+            <li><span>✓</span>Quem quer montar um PC barato</li>
+            <li><span>✓</span>Quem quer começar sem placa de vídeo</li>
+            <li><span>✓</span>Estudos e trabalho</li>
+            <li><span>✓</span>Uso diário com bom desempenho</li>
+            <li><span>✓</span>Upgrade com ótimo custo-benefício</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="videos">
+        <div class="section-heading video-heading">
+          <span class="section-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7-11-7Z" />
+            </svg>
+          </span>
+          <h2>Veja o produto em ação</h2>
         </div>
 
-        <aside class="sidebar" aria-label="Informações úteis">
-          <section class="side-card how-it-works" id="guias">
-            <span class="side-card-kicker">É simples e seguro</span>
-            <h2>Como o site funciona</h2>
-
-            <ol class="steps-list">
-              <li>
-                <span class="step-icon step-blue">
-                  <svg><use href="#icon-search"></use></svg>
-                </span>
-                <div>
-                  <strong>1. Pesquise o produto</strong>
-                  <p>Digite qualquer termo para consultar o catálogo da Amazon.</p>
-                </div>
-              </li>
-              <li>
-                <span class="step-icon step-green">
-                  <svg><use href="#icon-scale"></use></svg>
-                </span>
-                <div>
-                  <strong>2. Analise os resultados</strong>
-                  <p>Confira nome, imagem, preço e disponibilidade informados pela Amazon.</p>
-                </div>
-              </li>
-              <li>
-                <span class="step-icon step-purple">
-                  <svg><use href="#icon-cart"></use></svg>
-                </span>
-                <div>
-                  <strong>3. Acesse a Amazon</strong>
-                  <p>Clique em “Ver na Amazon” para abrir o produto em uma nova aba.</p>
-                </div>
-              </li>
-            </ol>
-          </section>
-
-          <section class="side-card savings-card">
-            <span class="side-card-kicker">Antes de finalizar</span>
-            <h2>Dicas para economizar</h2>
-            <ul class="tips-list">
-              <li>
-                <span class="tip-icon green"><svg><use href="#icon-coupon"></use></svg></span>
-                Confira o preço novamente antes de finalizar.
-              </li>
-              <li>
-                <span class="tip-icon orange"><svg><use href="#icon-truck"></use></svg></span>
-                Verifique frete e prazo diretamente na Amazon.
-              </li>
-              <li>
-                <span class="tip-icon blue"><svg><use href="#icon-clock"></use></svg></span>
-                Produtos podem mudar de preço ou disponibilidade.
-              </li>
-              <li>
-                <span class="tip-icon purple"><svg><use href="#icon-star"></use></svg></span>
-                Leia avaliações e detalhes completos do anúncio.
-              </li>
-            </ul>
-          </section>
-
-          <section class="trust-card">
-            <span class="trust-icon">✓</span>
-            <div>
-              <strong>Dados atualizados pela API</strong>
-              <p>Produtos e links vêm diretamente do serviço oficial da Amazon.</p>
+        <div class="video-grid">
+          <article class="video-card">
+            <div class="video-thumb unboxing">
+              <span class="video-label">RYZEN 5</span>
+              <span class="play-button" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7-11-7Z" />
+                </svg>
+              </span>
+              <span class="video-duration">6:12</span>
             </div>
-          </section>
-        </aside>
-      </div>
+            <h3>Unboxing</h3>
+          </article>
+
+          <article class="video-card">
+            <div class="video-thumb review">
+              <span class="video-label">REVIEW</span>
+              <span class="play-button" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7-11-7Z" />
+                </svg>
+              </span>
+              <span class="video-duration">10:24</span>
+            </div>
+            <h3>Review</h3>
+          </article>
+
+          <article class="video-card">
+            <div class="video-thumb build">
+              <span class="video-label">MONTAGEM<br />PC RYZEN 5</span>
+              <span class="play-button" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7-11-7Z" />
+                </svg>
+              </span>
+              <span class="video-duration">12:08</span>
+            </div>
+            <h3>Montagem de PC</h3>
+          </article>
+        </div>
+      </section>
+
+      <section class="final-cta">
+        <span class="cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 4h2l2.2 11h10.6L20 8H7" />
+            <circle cx="9" cy="19" r="1.5" />
+            <circle cx="17" cy="19" r="1.5" />
+          </svg>
+        </span>
+        <div class="cta-copy">
+          <h2>Pronto para conferir a oferta?</h2>
+          <p>Clique no botão ao lado para consultar preço e disponibilidade na Amazon.</p>
+        </div>
+        <a class="amazon-button cta-button" href="#" data-affiliate-link>
+          <span class="amazon-glyph" aria-hidden="true">a</span>
+          <span>Ver na Amazon</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M14 7l5 5-5 5" />
+          </svg>
+        </a>
+      </section>
+
+      <aside class="affiliate-disclosure">
+        <span class="disclosure-icon" aria-hidden="true">i</span>
+        <p>
+          Como Associado da Amazon, podemos receber comissão por compras qualificadas feitas
+          através dos links desta página, sem custo adicional para você.
+        </p>
+      </aside>
     </main>
 
     <footer class="site-footer" id="contato">
-      <div class="container footer-inner">
-        <a class="brand footer-brand" href="#inicio">
-          <span class="brand-mark">
-            <svg><use href="#icon-tag"></use></svg>
+      <div class="footer-wrapper">
+        <a class="brand footer-brand" href="#inicio" aria-label="PreçoCerto - início">
+          <span class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M20.4 13.2 11.6 22 2 12.4V2h10.4l8 8a2.2 2.2 0 0 1 0 3.2Z" />
+              <circle cx="7.3" cy="7.3" r="1.5" />
+            </svg>
           </span>
           <span>Preço<span>Certo</span></span>
         </a>
-        <p>Compare com calma. Economize de verdade.</p>
-        <a href="mailto:contato@precocerto.exemplo">contato@precocerto.exemplo</a>
+        <p>Consulte a disponibilidade antes de comprar.</p>
+        <a class="footer-link" href="#" data-affiliate-link>Ver na Amazon</a>
       </div>
     </footer>
-
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </body>
 </html>

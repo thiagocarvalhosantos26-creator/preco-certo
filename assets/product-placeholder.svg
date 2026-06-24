@@ -1,0 +1,63 @@
+<svg width="900" height="720" viewBox="0 0 900 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="boxFace" x1="168" y1="98" x2="643" y2="582" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3D424E"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="boxSide" x1="610" y1="122" x2="806" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="495" y1="264" x2="672" y2="492" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9A16"/>
+      <stop offset="1" stop-color="#F25F00"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="324" y1="444" x2="538" y2="654" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#B7C2CF"/>
+    </linearGradient>
+    <filter id="shadow" x="70" y="64" width="760" height="638" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="28"/>
+      <feGaussianBlur stdDeviation="28"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.029 0 0 0 0 0.067 0 0 0 0 0.18 0 0 0 0.24 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="720" fill="white" fill-opacity="0"/>
+  <g filter="url(#shadow)">
+    <path d="M112 166L580 96L782 177L316 258L112 166Z" fill="#505866"/>
+    <path d="M112 166L316 258V619L112 520V166Z" fill="url(#boxFace)"/>
+    <path d="M316 258L782 177V526L316 619V258Z" fill="url(#boxSide)"/>
+
+    <path d="M650 223L782 177V526L650 553V223Z" fill="url(#orange)"/>
+    <path d="M650 223L782 177V526L650 553V223Z" fill="url(#orange)"/>
+    <path d="M684 296H745V352H709V379H746V451H684V412H715V388H684V296Z" fill="white" fill-opacity=".95"/>
+
+    <circle cx="262" cy="340" r="132" fill="#0B1020"/>
+    <circle cx="262" cy="340" r="92" stroke="#1F2937" stroke-width="30"/>
+    <circle cx="262" cy="340" r="52" fill="#151C2B"/>
+
+    <path d="M421 250C500 244 566 300 574 378C584 467 518 541 431 541C397 541 365 529 340 508L383 464C397 473 414 479 431 479C480 479 517 437 512 388C508 344 471 311 427 313C401 314 378 327 363 347L316 302C341 271 379 253 421 250Z" fill="url(#orange)"/>
+
+    <text x="336" y="402" font-family="Inter, Arial, sans-serif" font-size="96" font-weight="900" letter-spacing="-6" fill="white">RYZEN</text>
+    <text x="370" y="468" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-2" fill="#E5E7EB">5</text>
+
+    <g transform="translate(350 440) rotate(-10)">
+      <rect x="0" y="0" width="238" height="188" rx="18" fill="url(#chip)" stroke="#8EA0B8" stroke-width="4"/>
+      <rect x="19" y="19" width="200" height="150" rx="10" fill="#EEF2F7" stroke="#CBD5E1"/>
+      <text x="119" y="79" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="900" fill="#4B5563">RYZEN</text>
+      <text x="119" y="124" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" fill="#111827">5 4600G</text>
+      <g stroke="#EAB308" stroke-width="7">
+        <path d="M20 184V206M48 184V206M76 184V206M104 184V206M132 184V206M160 184V206M188 184V206M216 184V206"/>
+      </g>
+    </g>
+
+    <text x="372" y="166" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="900" fill="#F8FAFC">PROCESSADOR COM GRÁFICOS</text>
+    <text x="372" y="202" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" fill="#FF8A00">RADEON INTEGRADOS</text>
+  </g>
+</svg>
